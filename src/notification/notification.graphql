@@ -1,0 +1,52 @@
+# *** Scalars ***
+scalar Date
+scalar ObjectId
+
+type User {
+  _id: ObjectId!
+  fullname: String!
+  email: String!
+  roles: [String]
+}
+
+type Notification {
+  _id: ObjectId!
+  user: User!
+  title: String!
+  description: String!
+  link: String!
+  readed: Boolean!
+}
+
+type UpdateStatus {
+  success: Boolean!
+}
+
+input CreateNotificationPayload {
+  user: String!
+  title: String!
+  description: String!
+  link: String!
+}
+
+input UpdateNotificationPayload {
+  title: String!
+  description: String!
+  link: String!
+}
+
+
+type Query {
+  getNotifications: [Notification]
+  getNotificationByEmail(email: String!): Notification
+  getNotificationById(_id: ObjectId!): Notification
+}
+
+type Mutation {
+  createNotification(payload: CreateNotificationPayload!): Notification
+  updateNotification(payload: UpdateNotificationPayload!): UpdateStatus
+}
+
+type Subscription {
+  notificationAdded(user: ObjectId!): Notification
+}

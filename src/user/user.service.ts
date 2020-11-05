@@ -1,6 +1,7 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Types } from 'mongoose';
+import { CreateUserDto } from "./dto/create-user.dto";
 import { User } from './models/user.model';
 
 @Injectable()
@@ -10,6 +11,28 @@ export class UserService {
       ) { }
     
     async getUserById(_id: Types.ObjectId): Promise<User | undefined> {
-        return await this.userModel.findById(_id).exec();
-      }    
+      return await this.userModel.findById(_id).exec();
+    }
+    
+    async create(createUserDto: CreateUserDto): Promise<User> {
+      const user = new this.userModel(createUserDto);
+      await this.isEmailUnique(user.email);
+      await user.save();
+
+      return user
+    }
+
+
+     // ********************************************
+  // ╔═╗╦═╗╦╦  ╦╔═╗╔╦╗╔═╗  ╔╦╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗╔═╗
+  // ╠═╝╠╦╝║╚╗╔╝╠═╣ ║ ║╣   ║║║║╣  ║ ╠═╣║ ║ ║║╚═╗
+  // ╩  ╩╚═╩ ╚╝ ╩ ╩ ╩ ╚═╝  ╩ ╩╚═╝ ╩ ╩ ╩╚═╝═╩╝╚═╝
+  // ********************************************
+
+  private async isEmailUnique(email: string) {
+    const user = await this.userModel.findOne({ email, verified: true });
+    if (user) {
+      throw new BadRequestException('Email must be unique.');
+    }
+  }
 }

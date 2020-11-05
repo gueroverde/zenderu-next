@@ -1,19 +1,15 @@
-# ********************* Scalars *********************
+# *** Scalars ***
 scalar Date
 scalar ObjectId
-
-# ********************* Types Entities *********************
+# *** Types Entities ***
 type User {
   _id: ObjectId!
-  fullname: String!
-  email: String!
-  roles: [String]
-}
-
-# ********************** Querys **********************
-type Query {
-  #Users
-  getUserById(id: String!): User
+  fullName: String!
+  email: String
+  roles: [String!]
+  verified: Boolean
+  verificationExpires: Date
+  notifications: [Notification!]
 }
 
 #  ****  Inputs  ****
@@ -59,6 +55,7 @@ type LoginOutput {
 type RegisterOutput {
   fullName: String!
   email: String!
+  verified: Boolean!
 }
 type VerifyEmailOutput {
   fullName: String!
@@ -84,6 +81,9 @@ type ResetPasswordOutput {
   message: String!
 }
 
+# **** Querys ****
+#type Query {
+#}
 
 # **** Mutations ****
 type Mutation {

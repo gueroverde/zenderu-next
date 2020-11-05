@@ -1,0 +1,17 @@
+# ********************* Scalars *********************
+scalar Date
+scalar ObjectId
+
+# ********************* Types Entities *********************
+type User {
+  _id: ObjectId!
+  fullname: String!
+  email: String!
+  roles: [String]
+}
+
+# ********************** Querys **********************
+type Query {
+  #Users
+  getUserById(id: String!): User
+}

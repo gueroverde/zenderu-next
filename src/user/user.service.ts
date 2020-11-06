@@ -13,26 +13,4 @@ export class UserService {
     async getUserById(_id: Types.ObjectId): Promise<User | undefined> {
       return await this.userModel.findById(_id).exec();
     }
-    
-    async create(createUserDto: CreateUserDto): Promise<User> {
-      const user = new this.userModel(createUserDto);
-      await this.isEmailUnique(user.email);
-      await user.save();
-
-      return user
-    }
-
-
-     // ********************************************
-  // ╔═╗╦═╗╦╦  ╦╔═╗╔╦╗╔═╗  ╔╦╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗╔═╗
-  // ╠═╝╠╦╝║╚╗╔╝╠═╣ ║ ║╣   ║║║║╣  ║ ╠═╣║ ║ ║║╚═╗
-  // ╩  ╩╚═╩ ╚╝ ╩ ╩ ╩ ╚═╝  ╩ ╩╚═╝ ╩ ╩ ╩╚═╝═╩╝╚═╝
-  // ********************************************
-
-  private async isEmailUnique(email: string) {
-    const user = await this.userModel.findOne({ email, verified: true });
-    if (user) {
-      throw new BadRequestException('Email must be unique.');
-    }
-  }
 }

@@ -5,7 +5,6 @@ import validator from 'validator';
 import * as bcrypt from 'bcrypt';
 import { UserRoles } from './user.roles'
 
-
 @ObjectType()
 @Schema({versionKey: false, timestamps: true})
 export class User extends Document {
@@ -30,7 +29,7 @@ export class User extends Document {
   password: string;
 
   @Field(() => Types.Array)
-  @Prop({ default: ['user'] })
+  @Prop({ default: [UserRoles.CLIENT] })
   roles: UserRoles[];
 
   @Field()

@@ -7,9 +7,14 @@ type User {
   fullName: String!
   email: String
   roles: [String!]
-  verified: Boolean
   verificationExpires: Date
   notifications: [Notification!]
+}
+
+# *** enums ***
+enum REGISTER_ROLE {
+  CLIENT
+  EXPERT
 }
 
 #  ****  Inputs  ****
@@ -23,6 +28,7 @@ input RegisterPayload {
   email: String!
   password: String!
   passwordConfirm: String!
+  roles: [REGISTER_ROLE!]
 }
 
 input VerifyEmailPayload {
@@ -55,7 +61,6 @@ type LoginOutput {
 type RegisterOutput {
   fullName: String!
   email: String!
-  verified: Boolean!
 }
 type VerifyEmailOutput {
   fullName: String!
@@ -80,10 +85,6 @@ type ResetPasswordOutput {
   email: String!
   message: String!
 }
-
-# **** Querys ****
-#type Query {
-#}
 
 # **** Mutations ****
 type Mutation {

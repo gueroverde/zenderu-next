@@ -1,4 +1,5 @@
-import { IsNotEmpty, MinLength, MaxLength, IsEmail, IsString, Matches } from 'class-validator';
+import { IsNotEmpty, MinLength, MaxLength, IsEmail, IsString, Matches, Contains, NotContains, IsIn, IsArray, ArrayContains, ArrayNotContains } from 'class-validator';
+import { UserRoles } from 'src/user/models/user.roles';
 import { IsEqualTo } from '../decorators/is-equal-to.decorator';
 export class CreateUserDto {
 
@@ -33,14 +34,8 @@ export class CreateUserDto {
   // Password Confirmation
   @IsEqualTo('password')
   readonly passwordConfirm: string;
+
+  @IsArray()
+  @ArrayNotContains([UserRoles.ADMIN])
+  readonly roles: [string]
 }
-
-
-// mutation {
-//   register(payload: {fullName: "josh M", email: "josh@doe.com", 
-//    password: "Test123!", passwordConfirm: "Test123!"}) {
-//       fullName
-//      email
-//      verified
-//   }
-// }

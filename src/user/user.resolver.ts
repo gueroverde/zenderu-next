@@ -25,12 +25,4 @@ export class UserResolver {
       throw new InternalServerErrorException();
     }
   }
-
-  @Mutation()
-  @UsePipes(new ValidationPipe())
-  async register(@Args('payload') createUserDto: CreateUserDto) {
-    this.logger.log(`creando usuario password: ${CreateUserDto}`);
-
-    return this.userService.create(createUserDto);
-  }
 }

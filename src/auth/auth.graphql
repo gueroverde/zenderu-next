@@ -31,10 +31,6 @@ input RegisterPayload {
   roles: [REGISTER_ROLE!]
 }
 
-input VerifyEmailPayload {
-  verification: String!
-}
-
 input RefreshAccessTokenPayload {
   refreshToken: String!
 }
@@ -62,12 +58,6 @@ type RegisterOutput {
   fullName: String!
   email: String!
 }
-type VerifyEmailOutput {
-  fullName: String!
-  email: String!
-  accessToken: String!
-  refreshToken: String!
-}
 type RefreshAccesTokenOutput {
   accessToken: String!
 }
@@ -90,7 +80,6 @@ type ResetPasswordOutput {
 type Mutation {
   login(payload: LoginPayload!): LoginOutput
   register(payload: RegisterPayload!): RegisterOutput
-  verifyEmail(payload: VerifyEmailPayload!): VerifyEmailOutput
   refreshAccessToken(payload: RefreshAccessTokenPayload!): RefreshAccesTokenOutput
   forgotPassword(payload: ForgotPasswordPayload!): ForgotPasswordOutput
   forgotPasswordVerify(payload: ForgotPasswordVerifyPayload!): ForgotPasswordVerifyOutput

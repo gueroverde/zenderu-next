@@ -241,7 +241,7 @@ export class AuthService {
   }
 
   private async findByEmail(email: string): Promise<User> {
-    const user = await this.userModel.findOne({ email, verified: true });
+    const user = await this.userModel.findOne({ email });
     if (!user) {
       throw new NotFoundException('Email not found.');
     }

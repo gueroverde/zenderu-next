@@ -1,4 +1,4 @@
-import { IsNotEmpty, MinLength, MaxLength, IsEmail, IsString, Matches, Contains, NotContains, IsIn, IsArray, ArrayContains, ArrayNotContains } from 'class-validator';
+import { IsNotEmpty, MinLength, MaxLength, IsEmail, IsString, Matches, IsArray, ArrayNotContains } from 'class-validator';
 import { UserRoles } from 'src/user/models/user.roles';
 import { IsEqualTo } from '../decorators/is-equal-to.decorator';
 export class CreateUserDto {

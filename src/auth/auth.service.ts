@@ -46,7 +46,7 @@ export class AuthService {
     const user = new this.userModel(createUserDto);
     await this.isEmailUnique(user.email);
     this.setRegistrationInfo(user);
-    //await this.sendVerificationEmail(user);
+    await this.sendVerificationEmail(user);
     await user.save();
     return this.buildRegistrationInfo(user);
   }

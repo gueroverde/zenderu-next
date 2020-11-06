@@ -27,6 +27,8 @@ input RegisterPayload {
   email: String!
   password: String!
   passwordConfirm: String!
+  gender: GENDER!
+  birthday: Date!
 }
 
 input VerifyEmailPayload {

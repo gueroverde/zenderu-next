@@ -17,6 +17,12 @@ enum REGISTER_ROLE {
   EXPERT
 }
 
+enum GENDER {
+  MALE
+  FEMALE
+  OTHER
+} 
+
 #  ****  Inputs  ****
 input LoginPayload {
   email: String!
@@ -29,6 +35,8 @@ input RegisterPayload {
   password: String!
   passwordConfirm: String!
   roles: [REGISTER_ROLE!]
+  gender: GENDER!
+  birthday: Date!
 }
 
 input RefreshAccessTokenPayload {

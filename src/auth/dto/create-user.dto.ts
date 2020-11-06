@@ -38,4 +38,8 @@ export class CreateUserDto {
   @IsArray()
   @ArrayNotContains([UserRoles.ADMIN])
   readonly roles: [string]
+
+ // @IsNotEmpty()
+ // readonly birthday: Date
+
 }

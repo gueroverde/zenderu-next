@@ -39,6 +39,46 @@ export class User extends Document {
   @Field()
   @Prop({ default: Date.now })
   verificationExpires: Date;
+
+  @Field()
+  @Prop({ default: false })
+  verified: boolean;
+
+  @Field()
+  @Prop({ required: true})
+  gender: string
+
+  @Field()
+  @Prop({ required: false })
+  birthday: Date
+
+  @Field()
+  @Prop({ required: false })
+  picture: string
+
+  @Field()
+  @Prop({ required: false })
+  backgroundPicture: string
+
+  @Field()
+  @Prop({ required: false, default: 0 })
+  availableCredits: number
+
+  @Field()
+  @Prop({ required: false })
+  createdAt: Date
+
+  @Field()
+  @Prop({ required: false })
+  updatedAt: Date
+
+  @Field()
+  @Prop({ required: false })
+  deletedAt: Date
+
+  @Field()
+  @Prop({ required: false })
+  deletedBy: Date
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
